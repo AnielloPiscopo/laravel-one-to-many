@@ -22,6 +22,10 @@ class Project extends Model
 
     protected $fillable = array('title' , 'slug' , 'description' , 'img_path');
 
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
