@@ -24,6 +24,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ProjectController extends Controller
 {
     protected $rules = [
+        'type_id' => 'required|exists:categories,id',
         'title' => 'required|string|unique:projects|between:2,255',
         'description' => 'required|min:10',
         'slug' => 'string|unique:projects|between:2,255',
