@@ -13,6 +13,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Console\View\Components\Confirm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ProjectController extends Controller
 {
     protected $rules = [
-        'type_id' => 'required|exists:categories,id',
+        'type_id' => 'required|exists:types,id',
         'title' => 'required|string|unique:projects|between:2,255',
         'description' => 'required|min:10',
         'slug' => 'string|unique:projects|between:2,255',
@@ -65,7 +66,8 @@ class ProjectController extends Controller
      */
     public function create(Project $project)
     {
-        return view('admin.pages.projects.create' , compact('project'));
+        $types = Type::all();
+        return view('admin.pages.projects.create' , compact('project' , 'types'));
     }
 
     /**
@@ -115,7 +117,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.pages.projects.edit' , compact('project'));
+        $types = Type::all();
+        return view('admin.pages.projects.edit' , compact('project' , 'types'));
     }
 
     /**

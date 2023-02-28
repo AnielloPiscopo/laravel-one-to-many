@@ -34,4 +34,8 @@ class Project extends Model
     public function isImageAUrl(){
         return filter_var($this->img_path, FILTER_VALIDATE_URL);
     }
+
+    public function fromStringToBoolean($str){
+        return $str ? 'true' : 'false';
+    }
 }

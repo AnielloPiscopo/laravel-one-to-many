@@ -10,6 +10,8 @@
 @php
 $tableElements=[
     'id',
+    'type_name',
+    'type_vanilla',
     'title',
     'description',
     'img_path',
@@ -61,6 +63,8 @@ $tableElements=[
         @foreach ($projects as $project)
           <tr>
               <th scope="row">{{$project->id}}</th>
+              <td>{{$project->type->name}}</td>
+              <td>{{$project->fromStringToBoolean($project->type->vanilla)}}</td>
               <td>{{$project->title}}</td>
               <td>{{$project->description}}</td>
               <td>{{$project->img_path}}</td>

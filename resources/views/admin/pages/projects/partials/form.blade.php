@@ -17,11 +17,22 @@
   @csrf
   @method($formMethod)
 
-  <article class="card">
+  @dump($types)
+
+  <div class="card">
     <div class="card-header">
       <h2 class="text-center m-0 p-3 fw-bold">{{$formMethod === 'POST' ? 'Create a new project' : "Edit the project '$project->title'"}}</h2>
     </div>
     <div class="card-body">
+      <div class="form-outline mb-3">
+        <label for="type_name" class="form-label">Type</label>
+        <select class="my_form-el form-control" id="type_name" name="type_id" aria-describedby="type-errors">
+          @foreach ($types as $type)
+              <option value="{{$type->id}}" {{old('type_id' , $project->type_id) == $type->id ? 'selected' : ''}}>{{$type->name}}</option>
+          @endforeach
+        </select>
+      </div>
+
       <div class="form-outline mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="my_form-el form-control @error('title') is-invalid @enderror" id="title" name="title" aria-describedby="title-errors" placeholder="Insert the title" minlength="2" maxlength="255" value="{{old('title',$project->title)}}">
@@ -47,5 +58,5 @@
       </div>
       <button type="submit" class="btn btn-primary my_btn">Submit</button>
     </div>
-  </article>
+  </div>
 </form>
