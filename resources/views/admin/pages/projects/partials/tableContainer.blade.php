@@ -79,12 +79,12 @@ $tableElements=[
                       <button type="submit" class="my_btn btn btn-danger">Delete</button>
                   </form>
                 @else
-                    <form action="{{route('admin.pages.projects.forceDelete' , $project->id)}}" method="POST" >
+                    <form action="{{route('admin.pages.projects.forceDelete' , $project->slug)}}" method="POST" >
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="my_btn btn btn-danger">Delete</button>
                     </form>
-                    <a href="{{route('admin.pages.projects.restore' , $project->id)}}" class="my_btn btn btn-primary">Restore</a>
+                    <a href="{{route('admin.pages.projects.restore' , $project->slug)}}" class="my_btn btn btn-primary">Restore</a>
                 @endif
               </td>
           </tr>

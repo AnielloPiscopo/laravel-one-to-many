@@ -199,17 +199,17 @@ class ProjectController extends Controller
 
     /**
      * Restore the trashed resource.
-     * @param  Int $id
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function restore($id)
+    public function restore(Project $project)
     {
-        Project::where('id' , $id)->withTrashed()->restore();
+        $project->restore();
 
         $successMessage = "
         <div class='my-alert-popup my_success'>
             <h1 class='fw-bold'>Ripristino concluso!</h1>
-            <h5 class='my_alert-message'>L'elemento con id <code>$id</code> è stato ripristinato</h5>
+            <h5 class='my_alert-message'>L'elemento con id <code>$project->id</code> è stato ripristinato</h5>
         </div>";
 
         return redirect()->route('admin.pages.projects.index')->with('success' , "$successMessage");
@@ -236,17 +236,17 @@ class ProjectController extends Controller
 
     /**
      * Force delete resource.
-     * @param  Int $id
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function forceDelete($id)
+    public function forceDelete(Project $project)
     {
-        Project::where('id' , $id)->withTrashed()->forceDelete();
+        $project->forceDelete();
 
         $successMessage = "
         <div class='my-alert-popup my_success'>
             <h1 class='fw-bold'>Eliminazione definitiva conclusa!</h1>
-            <h5 class='my_alert-message'>L'elemento con id <code>$id</code> è stato cancellato definitivamente</h5>
+            <h5 class='my_alert-message'>L'elemento con id <code>$project->id</code> è stato cancellato definitivamente</h5>
         </div>";
 
         return redirect()->route('admin.pages.projects.trashed')->with('success' , "$successMessage");
