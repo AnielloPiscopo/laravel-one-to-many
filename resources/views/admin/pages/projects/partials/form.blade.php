@@ -33,6 +33,12 @@
         </select>
       </div>
 
+      
+      {{-- <div class="form-outline mb-3">
+        <label for="type_vanilla" class="form-label">Vanilla</label>
+        <input class="form-check-input" type="checkbox" value="1" name="type_vanilla" id="type_vanilla">
+      </div> --}}
+
       <div class="form-outline mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="my_form-el form-control @error('title') is-invalid @enderror" id="title" name="title" aria-describedby="title-errors" placeholder="Insert the title" minlength="2" maxlength="255" value="{{old('title',$project->title)}}">

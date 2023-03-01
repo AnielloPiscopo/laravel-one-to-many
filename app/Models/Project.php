@@ -20,7 +20,7 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = array('title' , 'slug' , 'description' , 'img_path');
+    protected $fillable = array('type_id','title' , 'slug' , 'description' , 'img_path');
 
     public function type(){
         return $this->belongsTo(Type::class);
